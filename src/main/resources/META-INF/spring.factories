@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=cn.bucheng.advice.ResponseAdvice,\
+  cn.bucheng.config.ServerWebConfig,\
+  cn.bucheng.exception.GlobalExceptionHandler
