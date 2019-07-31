@@ -25,7 +25,7 @@ public class ResponseAdvice implements ResponseBodyAdvice {
         if(methodParameter.getDeclaringClass().isAnnotationPresent(IgnoreAdvice.class)){
             return false;
         }
-        if(methodParameter.hasParameterAnnotation(IgnoreAdvice.class)){
+        if(methodParameter.getMethodAnnotation(IgnoreAdvice.class)!=null){
             return false;
         }
         return true;
