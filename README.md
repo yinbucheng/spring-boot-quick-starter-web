@@ -181,4 +181,16 @@ logging.config= classpath:log4j2.xml
 7.使用抛出业务异常请使用抛出BusinessException异常
 
 8.controller层访问如果是想返回最原始的数据格式请在方法或者类上面填的IgnoreAdvice注解
+
+9.业务返回格式如下
+{
+    "code": 0,
+    "data": "hi",
+    "message": "operation ok"
+}
+其中code 
+0表示操作成功     返回数据会在data中
+-1表示系统出现异常  message是基本错误信息，详情在data中
+其他表示业务错误    提示在message中 data为null
+
 ```
