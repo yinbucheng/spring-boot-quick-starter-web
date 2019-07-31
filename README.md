@@ -150,4 +150,8 @@ spring.resources.add-mappings=false
 3.配置导入的log4j2.xml文件路径
 #log4j2配置
 logging.config= classpath:log4j2.xml
+
+4.使用抛出业务异常请使用抛出BusinessException异常
+
+5.controller层访问如果是想返回最原始的数据格式请在方法或者类上面填的IgnoreAdvice注解
 ```
