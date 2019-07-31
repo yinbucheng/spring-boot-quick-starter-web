@@ -13,6 +13,12 @@
 3.添加下面配置
 spring.mvc.throw-exception-if-no-handler-found=true
 spring.resources.add-mappings=false
+#配置http输出让浏览器采用utf-8
+spring.http.encoding.charset=utf-8
+spring.http.encoding.force=true
+spring.http.encoding.enabled=true
+
+
 
 4.创建log4j2.xml文件
 <?xml version="1.0" encoding="UTF-8"?>
