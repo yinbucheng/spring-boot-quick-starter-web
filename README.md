@@ -156,11 +156,23 @@ spring.resources.add-mappings=false
 
 </configuration>
 
-5.配置导入的log4j2.xml文件路径
+5.在springboot中排除原始的日志依赖
+   <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
+    </dependency>
+
+6.配置导入的log4j2.xml文件路径
 #log4j2配置
 logging.config= classpath:log4j2.xml
 
-6.使用抛出业务异常请使用抛出BusinessException异常
+7.使用抛出业务异常请使用抛出BusinessException异常
 
-7.controller层访问如果是想返回最原始的数据格式请在方法或者类上面填的IgnoreAdvice注解
+8.controller层访问如果是想返回最原始的数据格式请在方法或者类上面填的IgnoreAdvice注解
 ```
