@@ -3,6 +3,7 @@ package cn.bucheng.exception;
 import cn.bucheng.model.ServerModel;
 import cn.bucheng.constant.BusinessError;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -43,20 +44,36 @@ public class GlobalExceptionHandler {
             MethodArgumentNotValidException mse = (MethodArgumentNotValidException) error;
             return ServerModel.fail(BusinessError.PARAM_VERIFY_FAIL.getCode(), BusinessError.PARAM_VERIFY_FAIL.getMessage() + ":" + errorMessage(mse.getBindingResult()));
         } else {
+            if (error instanceof RuntimeException) {
+                RuntimeException err = (RuntimeException) error;
+                log.error(printStackTraceError(err.getStackTrace()));
+            }
             return ServerModel.error("服务器异常", error.toString());
         }
     }
 
 
-    private List<String> errorMessage(BindingResult result){
+    private List<String> errorMessage(BindingResult result) {
         List<String> errors = new LinkedList<>();
         List<ObjectError> allErrors = result.getAllErrors();
-        if(allErrors!=null){
-            for(ObjectError error:allErrors){
+        if (allErrors != null) {
+            for (ObjectError error : allErrors) {
                 errors.add(error.getDefaultMessage());
             }
         }
 
         return errors;
+    }
+
+    private String printStackTraceError(StackTraceElement[] stacks) {
+        if (stacks == null || stacks.length == 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n");
+        for (StackTraceElement stack : stacks) {
+            sb.append(stack.toString()).append("\n");
+        }
+        return sb.toString();
     }
 }
